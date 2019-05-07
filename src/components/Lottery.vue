@@ -67,11 +67,11 @@ export default class Lottery extends Vue {
     protected async KyoudanClick() {
         await this.$vdialog.alert({title: '警告', message:'そこ、野本さんの席だからぁ！！'}).promise;
     }
-    protected sekiClick(num: number) {
+    // protected sekiClick(num: number) {
 
-    }
+    // }
     protected selectClick(num: number) {
-        this.select.number = this.number;
+        // this.select.number = this.number;
     }
 }
 </script>
