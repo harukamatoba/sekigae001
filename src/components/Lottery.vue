@@ -32,7 +32,7 @@
                                     //生成された席番号と表示している席の番号が等しい場合赤い箱にしてメッセージを変える
                             .catch(v-else)
                                 v-card-text {{seki}}
-    p {{select}}}
+    p {{ select.number }}
 </template>
 
 <script lang='ts'>
@@ -45,7 +45,7 @@ export default class Lottery extends Vue {
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ];
     protected temp = 0;
-    protected select ={number: -1, seki: -1};
+    protected select = {number: -1, seki: -1};
 
     protected NGnum = [-1, 1, 40, 5, 33];
     protected btnDisable = false;
@@ -57,7 +57,7 @@ export default class Lottery extends Vue {
     protected randNum = -1;
     protected slotStart() {
         this.cardState.shuffleState = true;     // とりあえず引いたよーって変数の中身を変更
-        while(this.NGnum.indexOf(this.randNum) !== -1) {    // NGな配列の中に含まれている間乱数を生成し続ける
+        while (this.NGnum.indexOf(this.randNum) !== -1) {    // NGな配列の中に含まれている間乱数を生成し続ける
             this.randNum = Math.floor(Math.random() * 43) + 1;
         }
         this.cardState.text = Math.floor((this.randNum / 10)).toString() + ' ' + (this.randNum % 10).toString();
@@ -65,13 +65,10 @@ export default class Lottery extends Vue {
 
     }
     protected async KyoudanClick() {
-        await this.$vdialog.alert({title: '警告', message:'そこ、野本さんの席だからぁ！！'}).promise;
+        await this.$vdialog.alert({title: '警告', message: 'そこ、野本さんの席だからぁ！！'}).promise;
     }
-    // protected sekiClick(num: number) {
-
-    // }
     protected selectClick(num: number) {
-        // this.select.number = this.number;
+        this.select.number = num;
     }
 }
 </script>
